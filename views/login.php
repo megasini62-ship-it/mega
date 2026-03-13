@@ -9,138 +9,128 @@ if (isset($_SESSION['email']) && isset($_SESSION['senha'])) {
 }
 ?>
 <!DOCTYPE html>
-
-<html
-  lang="pt-br"
-  class="customizer-hide dark-style"
-  dir="ltr"
-  data-theme="theme-default"
-  data-assets-path="../../assets/"
-  data-template="vertical-menu-template">
+<html lang="pt-br">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
-    <title>Gerenciador Atlas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>Gerenciador Atlas – Login</title>
     <meta name="description" content="" />
     <link rel="icon" type="image/x-icon" href="https://a.imagem.app/oNsa4m.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-      rel="stylesheet" />
-    <link rel="stylesheet" href="../../assets/vendor/fonts/boxicons.css" />
-    <link rel="stylesheet" href="../../assets/vendor/fonts/fontawesome.css" />
-    <link rel="stylesheet" href="../../assets/vendor/fonts/flag-icons.css" />
-    <link rel="stylesheet" href="../../assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="../../assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="../../assets/css/demo.css" />
-    <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
-    <link rel="stylesheet" href="../../assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
-    <link rel="stylesheet" href="../../assets/vendor/css/pages/page-auth.css" />
-    <script src="../../assets/vendor/js/helpers.js"></script>
-    <script src="../../assets/vendor/js/template-customizer.js"></script>
-    <script src="../../assets/js/config.js"></script>
-    <script src="../../assets/js/chm.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <link rel="stylesheet" type="text/css" href="../assets/css/notify.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+    <link rel="stylesheet" href="assets/css/modern-theme.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+  </head>
   <body>
-    <div class="container-xxl">
-      <div class="authentication-wrapper authentication-basic container-p-y">
-        <div class="authentication-inner py-4">
-          <div class="card">
-            <div class="card-body">
-              <div class="app-brand justify-content-center">
-                  <img src="https://a.imagem.app/oNsySX.png" alt="logo" width="200px" height="60px" />
-              </div>
-              <h4 class="mb-2">Bem vindo ao Gerenciador Atlas</h4>
-              <p class="mb-4">Aqui voce pode gerenciar seus dominios</p>
+    <div class="auth-page-wrapper">
+      <!-- Floating particles -->
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
 
-              <form id="formAuthentication" class="mb-3" action="login" method="POST">
-                <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="email"
-                    name="email"
-                    value = "<?php echo isset($_POST['email']) ? $_POST['email'] : '' ?>"
-                    placeholder="Informe seu email"
-                    autofocus />
-                </div>
-                <div class="mb-3 form-password-toggle">
-                  <div class="d-flex justify-content-between">
-                    <label class="form-label" for="password">Senha</label>
-                  </div>
-                  <div class="input-group input-group-merge">
-                    <input
-                      type="password"
-                      id="password"
-                      value = "<?php echo isset($_POST['senha']) ? $_POST['senha'] : '' ?>"
-                      class="form-control"
-                      name="senha"
-                      placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                      aria-describedby="password" />
-                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                  </div>
-                </div>
+      <div class="auth-card">
+        <div class="auth-logo">
+          <img src="https://a.imagem.app/oNsySX.png" alt="Logo Gerenciador Atlas" />
+        </div>
 
-                <div class="mb-3">
-                  <button class="btn btn-primary d-grid w-100" type="submit">Entrar</button>
-                </div>
-              </form>
+        <h1 class="auth-title">Bem-vindo de volta! 👋</h1>
+        <p class="auth-subtitle">Acesse sua conta para gerenciar seus domínios</p>
 
-              <div class="divider my-4">
-                <div class="divider-text">ou</div>
-              </div>
-              <p class="text-center">
-                <span>Ainda não tem uma conta?</span>
-                <a href="register">
-                  <span>&nbsp;Cadastre-se agora</span>
-                </a>
-              </p>
+        <form id="formAuthentication" action="login" method="POST">
+          <div class="mb-3">
+            <label for="email" class="auth-form-label">
+              <i class="fa-solid fa-envelope" style="color:#a78bfa"></i> Email
+            </label>
+            <input
+              type="text"
+              class="auth-input form-control"
+              id="email"
+              name="email"
+              value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
+              placeholder="seu@email.com"
+              autofocus />
+          </div>
+
+          <div class="mb-4">
+            <label class="auth-form-label" for="password">
+              <i class="fa-solid fa-lock" style="color:#c084fc"></i> Senha
+            </label>
+            <div class="auth-input-group">
+              <input
+                type="password"
+                id="password"
+                value="<?php echo isset($_POST['senha']) ? htmlspecialchars($_POST['senha']) : '' ?>"
+                class="auth-input form-control"
+                name="senha"
+                placeholder="••••••••••••"
+                aria-describedby="password" />
+              <button type="button" class="toggle-password" onclick="togglePassword('password', this)">
+                <i class="fa-solid fa-eye-slash"></i>
+              </button>
             </div>
           </div>
-        </div>
-        <?php
-        if (isset($_POST['email']) && isset($_POST['senha'])) {
-            $email = $_POST['email'];
-            $senha = $_POST['senha'];
-            $loginData = login($email, $senha);
-            if ($loginData !== false) {
-                $_SESSION['id'] = $loginData['id'];
-                $_SESSION['nome'] = $loginData['nome'];
-                $_SESSION['email'] = $loginData['email'];
-                $_SESSION['admin'] = $loginData['admin'];
-                $_SESSION['senha'] = $senha;
-                $_SESSION['perm'] = $loginData['perm'];
-                echo "<script>successnotify('Sucesso! Você será redirecionado em 1 segundo!'); 
-                setTimeout(function(){ window.location.href = 'home'; }, 1000);</script>";
-            } else {
-                echo "<script>errornotify('Erro! Usuário ou senha incorretos!');</script>";
-            }
-        }
-        
-        ?>
+
+          <button class="auth-btn btn" type="submit">
+            <i class="fa-solid fa-rocket me-2"></i> Entrar
+          </button>
+        </form>
+
+        <div class="auth-divider">ou</div>
+
+        <p class="auth-link-text">
+          Ainda não tem uma conta?&nbsp;<a href="register">Cadastre-se agora ✨</a>
+        </p>
       </div>
-    </div> 
-    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="../../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../../assets/vendor/js/bootstrap.js"></script>
-    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="../../assets/vendor/libs/hammer/hammer.js"></script>
-    <script src="../../assets/vendor/libs/i18n/i18n.js"></script>
-    <script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
-    <script src="../../assets/vendor/js/menu.js"></script>
-    <script src="../../assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js"></script>
-    <script src="../../assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js"></script>
-    <script src="../../assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js"></script>
-    <script src="../../assets/js/main.js"></script>
-    
-    <script src="../../assets/js/pages-auth.js"></script>
+    </div>
+
+    <?php
+    if (isset($_POST['email']) && isset($_POST['senha'])) {
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+        $loginData = login($email, $senha);
+        if ($loginData !== false) {
+            $_SESSION['id'] = $loginData['id'];
+            $_SESSION['nome'] = $loginData['nome'];
+            $_SESSION['email'] = $loginData['email'];
+            $_SESSION['admin'] = $loginData['admin'];
+            $_SESSION['senha'] = $senha;
+            $_SESSION['perm'] = $loginData['perm'];
+            echo "<script>successnotify('Sucesso! Você será redirecionado em 1 segundo!'); 
+            setTimeout(function(){ window.location.href = 'home'; }, 1000);</script>";
+        } else {
+            echo "<script>errornotify('Erro! Usuário ou senha incorretos!');</script>";
+        }
+    }
+    ?>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+      function successnotify(msg) {
+        Toastify({ text: msg, duration: 3000, gravity: "top", position: "right",
+          style: { background: "linear-gradient(135deg, #11998e, #38ef7d)", borderRadius: "10px" }
+        }).showToast();
+      }
+      function errornotify(msg) {
+        Toastify({ text: msg, duration: 3000, gravity: "top", position: "right",
+          style: { background: "linear-gradient(135deg, #f093fb, #f5576c)", borderRadius: "10px" }
+        }).showToast();
+      }
+      function togglePassword(inputId, btn) {
+        var input = document.getElementById(inputId);
+        var icon = btn.querySelector('i');
+        if (input.type === 'password') {
+          input.type = 'text';
+          icon.className = 'fa-solid fa-eye';
+        } else {
+          input.type = 'password';
+          icon.className = 'fa-solid fa-eye-slash';
+        }
+      }
+    </script>
   </body>
 </html>
