@@ -1,0 +1,11 @@
+# Protect the uploads directory — prevent direct execution of any files
+<Files *>
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+# Allow .zip files to be served through download_atualizacao.php only
+<FilesMatch "\.zip$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>

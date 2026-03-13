@@ -236,6 +236,18 @@ Email: ' . $_SESSION['email']
     }
 }
 
+if (isset($_POST['acao_atualizacao']) && $_POST['acao_atualizacao'] === 'logs') {
+    if ($_SESSION['perm'] == 'SIM') {
+        include_once './controlador/atualizacoes_funcoes.php';
+        $id = (int)($_POST['id'] ?? 0);
+        $logs = logsAtualizacao($id);
+        echo json_encode(['status' => 'sucesso', 'logs' => $logs]);
+    } else {
+        echo json_encode(['status' => 'erro', 'mensagem' => 'Sem permissão.']);
+    }
+    exit;
+}
+
 if (isset($_POST['gerartokenadmin'])) {
     $dominio = $_POST['dominio'];
     $token = $_POST['token'];

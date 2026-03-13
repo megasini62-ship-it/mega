@@ -107,6 +107,12 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['senha'])) {
                 <div>Usuarios</div>
               </a>
             </li>
+            <li class="menu-item">
+              <a href="atualizacoes" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-cloud-upload"></i>
+                <div>Atualizações</div>
+              </a>
+            </li>
             <?php } ?>
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Sua Conta</span></li>
             <li class="menu-item">
