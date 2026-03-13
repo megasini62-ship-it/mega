@@ -140,7 +140,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['senha'])) {
         <nav class="layout-navbar navbar navbar-expand-xl align-items-center px-4" style="min-height:64px;position:sticky;top:0;z-index:100;">
           <div class="d-flex align-items-center gap-3 w-100">
             <!-- Mobile menu toggle -->
-            <button class="d-xl-none btn btn-sm p-2" id="openSidebar" onclick="openSidebarFn()" style="background:rgba(102,126,234,0.1);border:1px solid rgba(102,126,234,0.2);color:#667eea;border-radius:8px;">
+            <button class="d-xl-none btn btn-sm p-2" id="openSidebar" onclick="openSidebar()" style="background:rgba(102,126,234,0.1);border:1px solid rgba(102,126,234,0.2);color:#667eea;border-radius:8px;">
               <i class="fa-solid fa-bars"></i>
             </button>
 

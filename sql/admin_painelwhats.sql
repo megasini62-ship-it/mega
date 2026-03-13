@@ -34,7 +34,9 @@ CREATE TABLE IF NOT EXISTS `contas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Inserir usuario administrador inicial
--- Email: admin@admin.com | Senha: admin123
+-- ATENÇÃO SEGURANÇA: Altere a senha do administrador imediatamente após o primeiro login!
+-- Email: admin@admin.com | Senha padrão: admin123 (MD5: 0192023a7bbd73250516f069df18b500)
+-- Para gerar novo hash MD5: SELECT MD5('sua_nova_senha');
 INSERT INTO `contas` (`name`, `email`, `senha`, `admin`, `perm`) VALUES
 ('Administrador', 'admin@admin.com', '0192023a7bbd73250516f069df18b500', 'SIM', 'SIM');
 

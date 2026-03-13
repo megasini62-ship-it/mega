@@ -21,7 +21,7 @@
         }).showToast();
       }
       // Mobile sidebar
-      function openSidebarFn() {
+      function openSidebar() {
         document.getElementById('sidebar').style.display = 'flex';
         document.getElementById('sidebarOverlay').classList.remove('d-none');
       }
@@ -29,7 +29,8 @@
         document.getElementById('sidebar').style.display = '';
         document.getElementById('sidebarOverlay').classList.add('d-none');
       }
-      document.getElementById('closeSidebar') && document.getElementById('closeSidebar').addEventListener('click', closeSidebar);
+      var closeSidebarBtn = document.getElementById('closeSidebar');
+      if (closeSidebarBtn) { closeSidebarBtn.addEventListener('click', closeSidebar); }
       // Sidebar menu hover effect
       document.querySelectorAll('.menu-link').forEach(function(link) {
         link.addEventListener('mouseenter', function() {

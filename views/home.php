@@ -74,7 +74,7 @@ $tokensPaginados = array_slice($tokens, $inicio, $itensPorPagina);
                     <?php if ($_SESSION['perm'] == 'SIM') {
                         echo htmlspecialchars($token['token']);
                     } elseif ($_SESSION['admin'] == 'SIM') {
-                        echo str_repeat('•', min(strlen($token['token']), 20));
+                        echo str_repeat('*', strlen($token['token']));
                     } else {
                         echo htmlspecialchars($token['token']);
                     } ?>

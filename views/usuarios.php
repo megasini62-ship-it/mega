@@ -236,6 +236,11 @@ $tokensPaginados = array_slice($tokens, $inicio, $itensPorPagina);
 
         function atualizarTabelaTokens(tokens) {
             $('.table tbody tr').remove();
+            function escHtml(str) {
+                var d = document.createElement('div');
+                d.appendChild(document.createTextNode(str));
+                return d.innerHTML;
+            }
             for (var i = 0; i < tokens.length; i++) {
                 var badgeHTML = "";
                 if (tokens[i]['perm'] == 'SIM') {
@@ -245,12 +250,15 @@ $tokensPaginados = array_slice($tokens, $inicio, $itensPorPagina);
                 } else {
                     badgeHTML = '<span class="badge-usuario"><i class="fa-solid fa-user fa-xs me-1"></i>Usuário</span>';
                 }
+                var safeName = escHtml(tokens[i]['name'] || '');
+                var safeEmail = escHtml(tokens[i]['email'] || '');
+                var safeId = parseInt(tokens[i]['id'], 10) || 0;
                 var newRow = "<tr>" +
-                    "<td><div class='d-flex align-items-center gap-2'><div style='width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;'><i class='fa-solid fa-user fa-xs text-white'></i></div><span style='font-weight:500;'>" + tokens[i]['name'] + "</span></div></td>" +
-                    "<td style='color:#718096;'>" + tokens[i]['email'] + "</td>" +
+                    "<td><div class='d-flex align-items-center gap-2'><div style='width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;'><i class='fa-solid fa-user fa-xs text-white'></i></div><span style='font-weight:500;'>" + safeName + "</span></div></td>" +
+                    "<td style='color:#718096;'>" + safeEmail + "</td>" +
                     "<td>" + badgeHTML + "</td>" +
                     "<td>" +
-                    "<button class='btn btn-sm btn-gradient-primary d-flex align-items-center gap-1' onclick='abrirmodaleditaruser(" + tokens[i]['id'] + ")'>" +
+                    "<button class='btn btn-sm btn-gradient-primary d-flex align-items-center gap-1' onclick='abrirmodaleditaruser(" + safeId + ")'>" +
                     "<i class='fa-solid fa-pen-to-square fa-xs'></i> Editar" +
                     "</button>" +
                     "</td>" +
