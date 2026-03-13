@@ -11,6 +11,9 @@ $routes = [
     '/account' => 'views/account.php',
     '/logout' => 'views/logout.php',
     '/checkpag' => 'views/checkpag.php',
+    '/atualizacoes' => 'views/atualizacoes.php',
+    '/api_atualizacao' => 'api_atualizacao.php',
+    '/download_atualizacao' => 'download_atualizacao.php',
 ];
 
 if (array_key_exists($url, $routes)) {
