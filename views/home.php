@@ -23,98 +23,133 @@ $totalPaginas = ceil($totalItens / $itensPorPagina);
 $inicio = ($paginaAtual - 1) * $itensPorPagina;
 $tokensPaginados = array_slice($tokens, $inicio, $itensPorPagina);
 ?>
-<div class="content-wrapper">
+<div class="col-12">
+  <div class="d-flex align-items-center justify-content-between mb-4">
+    <div>
+      <h4 class="page-title mb-1">
+        <i class="fa-solid fa-key me-2" style="color:#667eea;"></i><?php echo $texto; ?>
+      </h4>
+      <small class="text-muted">Atlas / Tokens</small>
+    </div>
+    <?php if ($_SESSION['admin'] == 'SIM' || $_SESSION['perm'] == 'SIM') { ?>
+    <button class="btn btn-gradient-primary d-flex align-items-center gap-2"
+            data-bs-toggle="modal" data-bs-target="#modalgerartoken">
+      <i class="fa-solid fa-plus"></i> Novo Token
+    </button>
+    <?php } ?>
+  </div>
 
-            <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="py-3 breadcrumb-wrapper mb-4">
-                <span class="text-muted fw-light">Atlas /</span> Tokens
-              </h4>
-<div class="card">
-                <h5 class="card-header"><?php echo $texto; ?></h5>
-                <!-- input pesquisa -->
-                <div class="card-body">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="pesquisa" placeholder="Pesquisar" aria-label="Pesquisar" aria-describedby="button-addon2" id='search'>
-                        <button class="btn btn-outline-primary" type="button" id="button-search" >Pesquisar</button>
-                    </div>
-                    <div class="card-datatable table-responsive">
-                  <table class="dt-advanced-search table table-bordered">
-        <thead>
+  <div class="card">
+    <div class="card-body">
+      <!-- Search -->
+      <div class="d-flex gap-2 mb-4">
+        <div class="search-wrapper flex-grow-1">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" class="form-control" name="pesquisa"
+                 placeholder="Pesquisar por domínio ou token..."
+                 aria-label="Pesquisar" id="search" style="padding-left:40px;" />
+        </div>
+        <button class="btn btn-gradient-primary d-flex align-items-center gap-2"
+                type="button" id="button-search">
+          <i class="fa-solid fa-search"></i> Buscar
+        </button>
+      </div>
+
+      <!-- Table -->
+      <div class="table-responsive">
+        <table class="table dt-advanced-search">
+          <thead>
             <tr>
-                <th>Token</th>
-                <th>Dominio</th>
-                <th>Vencimento</th>
-                <th>Editar</th>
+              <th><i class="fa-solid fa-key me-1" style="color:#667eea;"></i> Token</th>
+              <th><i class="fa-solid fa-globe me-1" style="color:#11998e;"></i> Domínio</th>
+              <th><i class="fa-solid fa-calendar me-1" style="color:#f093fb;"></i> Vencimento</th>
+              <th><i class="fa-solid fa-gear me-1" style="color:#4facfe;"></i> Ações</th>
             </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
             <?php foreach ($tokensPaginados as $token) { ?>
-                <tr>
-                    <td><?php if ($_SESSION['perm'] == 'SIM') {
-                            echo $token['token'];
-                        } elseif ($_SESSION['admin'] == 'SIM') {
-                            echo str_repeat('*', strlen($token['token']));
-                        } else {
-                            echo $token['token'];
-                        } ?></td>
-                    <td><?php echo $token['dominio']; ?></td>
-                    <td><?php echo $token['vencimento']; ?></td>
-                    <td>
-    <div class="btn-group" role="group">
-        <button class="btn btn-sm btn-primary" onclick="abrirModalEditarDominio(<?php echo $token['id']; ?>)">
-            Editar
-        </button>
-        <?php if ($_SESSION['admin'] == 'SIM' || $_SESSION['perm'] == 'SIM') { ?>
-        <button class="btn btn-sm btn-success" onclick="abrirModalrenovarDominio(<?php echo $token['id']; ?>, 'outroCampo')">
-            Renovar
-        </button>
-        <?php } ?>
-    </div>
-</td>
-
-                </tr>
+              <tr>
+                <td>
+                  <code style="background:rgba(102,126,234,0.08);padding:3px 8px;border-radius:6px;font-size:0.8rem;">
+                    <?php if ($_SESSION['perm'] == 'SIM') {
+                        echo htmlspecialchars($token['token']);
+                    } elseif ($_SESSION['admin'] == 'SIM') {
+                        echo str_repeat('•', min(strlen($token['token']), 20));
+                    } else {
+                        echo htmlspecialchars($token['token']);
+                    } ?>
+                  </code>
+                </td>
+                <td>
+                  <span class="d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-circle-dot fa-xs" style="color:#38ef7d;"></i>
+                    <?php echo htmlspecialchars($token['dominio']); ?>
+                  </span>
+                </td>
+                <td>
+                  <span style="font-weight:500;color:<?php echo ($token['vencimento'] == 'Nunca') ? '#11998e' : '#2d3748'; ?>;">
+                    <?php echo htmlspecialchars($token['vencimento']); ?>
+                  </span>
+                </td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-gradient-primary d-flex align-items-center gap-1"
+                            onclick="abrirModalEditarDominio(<?php echo $token['id']; ?>)">
+                      <i class="fa-solid fa-pen-to-square fa-xs"></i> Editar
+                    </button>
+                    <?php if ($_SESSION['admin'] == 'SIM' || $_SESSION['perm'] == 'SIM') { ?>
+                    <button class="btn btn-sm btn-gradient-success d-flex align-items-center gap-1"
+                            onclick="abrirModalrenovarDominio(<?php echo $token['id']; ?>, 'outroCampo')">
+                      <i class="fa-solid fa-rotate fa-xs"></i> Renovar
+                    </button>
+                    <?php } ?>
+                  </div>
+                </td>
+              </tr>
             <?php } ?>
-        </tbody>
-    </table>
-</div>
+          </tbody>
+        </table>
+      </div>
 
-
-
-
-<div class="d-flex justify-content-center">
-    <nav aria-label="Page navigation">
-    <ul class="pagination">
-        <li class="page-item <?php echo ($paginaAtual == 1) ? 'disabled' : ''; ?>">
-            <a class="page-link" href="?page=1" aria-label="First"><i class="tf-icon bx bx-chevrons-left"></i></a>
-        </li>
-        <li class="page-item <?php echo ($paginaAtual <= 1) ? 'disabled' : ''; ?>">
-            <a class="page-link" href="?page=<?php echo ($paginaAtual > 1) ? ($paginaAtual - 1) : 1; ?>" aria-label="Previous"><i class="tf-icon bx bx-chevron-left"></i></a>
-        </li>
-
-        <?php
-        $numPaginasExibidas = 5;
-        $paginaInicial = max(1, $paginaAtual - floor($numPaginasExibidas / 2));
-        $paginaFinal = min($totalPaginas, $paginaInicial + $numPaginasExibidas - 1);
-
-        for ($i = $paginaInicial; $i <= $paginaFinal; $i++) { ?>
-            <li class="page-item <?php echo ($paginaAtual == $i) ? 'active' : ''; ?>">
-                <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+      <!-- Pagination -->
+      <div class="d-flex justify-content-center mt-4">
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li class="page-item <?php echo ($paginaAtual == 1) ? 'disabled' : ''; ?>">
+              <a class="page-link" href="?page=1" aria-label="First">
+                <i class="fa-solid fa-angles-left fa-xs"></i>
+              </a>
             </li>
-        <?php } ?>
+            <li class="page-item <?php echo ($paginaAtual <= 1) ? 'disabled' : ''; ?>">
+              <a class="page-link" href="?page=<?php echo ($paginaAtual > 1) ? ($paginaAtual - 1) : 1; ?>" aria-label="Previous">
+                <i class="fa-solid fa-angle-left fa-xs"></i>
+              </a>
+            </li>
+            <?php
+            $numPaginasExibidas = 5;
+            $paginaInicial = max(1, $paginaAtual - floor($numPaginasExibidas / 2));
+            $paginaFinal = min($totalPaginas, $paginaInicial + $numPaginasExibidas - 1);
+            for ($i = $paginaInicial; $i <= $paginaFinal; $i++) { ?>
+              <li class="page-item <?php echo ($paginaAtual == $i) ? 'active' : ''; ?>">
+                <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+              </li>
+            <?php } ?>
+            <li class="page-item <?php echo ($paginaAtual >= $totalPaginas) ? 'disabled' : ''; ?>">
+              <a class="page-link" href="?page=<?php echo ($paginaAtual < $totalPaginas) ? ($paginaAtual + 1) : $totalPaginas; ?>" aria-label="Next">
+                <i class="fa-solid fa-angle-right fa-xs"></i>
+              </a>
+            </li>
+            <li class="page-item <?php echo ($paginaAtual == $totalPaginas) ? 'disabled' : ''; ?>">
+              <a class="page-link" href="?page=<?php echo $totalPaginas; ?>" aria-label="Last">
+                <i class="fa-solid fa-angles-right fa-xs"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
 
-        <li class="page-item <?php echo ($paginaAtual >= $totalPaginas) ? 'disabled' : ''; ?>">
-            <a class="page-link" href="?page=<?php echo ($paginaAtual < $totalPaginas) ? ($paginaAtual + 1) : $totalPaginas; ?>" aria-label="Next"><i class="tf-icon bx bx-chevron-right"></i></a>
-        </li>
-        <li class="page-item <?php echo ($paginaAtual == $totalPaginas) ? 'disabled' : ''; ?>">
-            <a class="page-link" href="?page=<?php echo $totalPaginas; ?>" aria-label="Last"><i class="tf-icon bx bx-chevrons-right"></i></a>
-        </li>
-    </ul>
-</nav>
-</div>
-</div>
-</div>
-
-              <hr class="my-5" />
     </div>
+  </div>
+</div>
 
 <?php include 'footer.php'; ?>

@@ -1,47 +1,47 @@
-          <!-- Content wrapper -->
-                <!-- Website Analytics-->
-
-            <!-- / Footer -->
-
-            <div class="content-backdrop fade"></div>
+          <!-- / Content -->
           </div>
-          <!-- Content wrapper -->
+          <!-- / flex-grow-1 p-4 -->
         </div>
-        <!-- / Layout page -->
+        <!-- / flex-grow-1 d-flex flex-column -->
       </div>
+    <!-- / modern-layout -->
 
-      <!-- Overlay -->
-      <div class="layout-overlay layout-menu-toggle"></div>
-
-      <!-- Drag Target Area To SlideIn Menu On Small Screens -->
-      <div class="drag-target"></div>
-    </div>
-
-
-    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="../../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../../assets/vendor/js/bootstrap.js"></script>
-    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-
-    <script src="../../assets/vendor/libs/hammer/hammer.js"></script>
-
-    <script src="../../assets/vendor/libs/i18n/i18n.js"></script>
-    <script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
-
-    <script src="../../assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
-
-    <!-- Main JS -->
-    <script src="../../assets/js/main.js"></script>
-
-    <!-- Page JS -->
-    <script src="../../assets/js/dashboards-analytics.js"></script>
-    <script src="../../assets/js/ui-modals.js"></script>
-    
-    <script src="../../assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+      function successnotify(msg) {
+        Toastify({ text: msg, duration: 3000, gravity: "top", position: "right",
+          style: { background: "linear-gradient(135deg, #11998e, #38ef7d)", borderRadius: "10px" }
+        }).showToast();
+      }
+      function errornotify(msg) {
+        Toastify({ text: msg, duration: 3000, gravity: "top", position: "right",
+          style: { background: "linear-gradient(135deg, #f093fb, #f5576c)", borderRadius: "10px" }
+        }).showToast();
+      }
+      // Mobile sidebar
+      function openSidebarFn() {
+        document.getElementById('sidebar').style.display = 'flex';
+        document.getElementById('sidebarOverlay').classList.remove('d-none');
+      }
+      function closeSidebar() {
+        document.getElementById('sidebar').style.display = '';
+        document.getElementById('sidebarOverlay').classList.add('d-none');
+      }
+      document.getElementById('closeSidebar') && document.getElementById('closeSidebar').addEventListener('click', closeSidebar);
+      // Sidebar menu hover effect
+      document.querySelectorAll('.menu-link').forEach(function(link) {
+        link.addEventListener('mouseenter', function() {
+          this.style.background = 'rgba(102,126,234,0.15)';
+          this.style.color = '#a78bfa';
+        });
+        link.addEventListener('mouseleave', function() {
+          this.style.background = '';
+          this.style.color = '';
+        });
+      });
+    </script>
     <script>
                       $('#gerar').click(function(){
                         var dominio = $('#dominiogerar').val();
